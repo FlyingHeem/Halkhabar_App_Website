@@ -1,43 +1,16 @@
-{% load staticfiles %}
-
-<html>
-<head>
-
-    <title>Halkhabar App</title>
-    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{% static 'css/news.css' %}">
-
-</head>
-
-<body style="background:lightgrey">
-<div class="page_header">
-    <h1 align="center"><a href="">Halkhabar App</a></h1>
-</div>
-<!-- Read news item from database and display using template tag -->
-
-<div class="content container">
-
-    <div class="row">
-        <div class="col-md-8">
-
+{% extends 'news/base.html' %}
+{% block content %}
             {% for news_item in news %}
 
-            <div class="news">
-                <h1><a href=""> {{ news_item.news_title }}</a></h1>
-                <p>{{ news_item.text|linebreaksbr}}</p> <!-- |linebreaksbr converts line breaks into paragraph-->
-                <p>Published: {{ news_item.published_date }}</p>
-            </div>
+               {% if news_item.published_date %}
+                <div class="news">
+                    <h1><a href="{% url 'news_detail' pk=news_item.pk %}">{{ news_item.news_title }}</a></h1>
+
+                    <p>{{ news_item.text|linebreaksbr}}</p> <!-- |linebreaksbr converts line breaks into paragraph-->
+                    <p>Published: {{ news_item.published_date }}</p>
+                    <a href="{% url 'news.views.news_detail' pk=news_item.pk %}">Comments:{{ news_item.approved_comments.count }}</a>
+                </div>
+                {% endif %}
 
             {% endfor %}
-
-        </div>
-    </div>
-
-</div>
-
-
-</body>
-
-</html>
+{% endblock %}
