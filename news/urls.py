@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.news_list, name='news_list'),
+    #url(r'^accounts/profile/$', views.news_list, name='news_list'),
     url(r'^news/(?P<pk>\d+)/$', views.news_detail, name='news_detail'),
     url(r'^news/new/$', views.news_new, name='news_new'),
     url(r'^news/(?P<pk>\d+)/edit/$', views.news_edit, name='news_edit'),

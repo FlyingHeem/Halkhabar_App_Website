@@ -5,7 +5,7 @@
         <div class="news">
             <p class="date">created: {{ draft_news.created_date|date:'d-m-y'}}</p>
             <h1><a href="{% url 'news.views.news_detail' pk=draft_news.pk %}">{{ draft_news.news_title }}</a></h1>
-            <p>{{ draft_news.text|truncatechars:200 }}</p>
+            <p>{{ draft_news.text|truncatechars:100 }}</p>
         </div>
     {% endfor %}
 {% endblock %}

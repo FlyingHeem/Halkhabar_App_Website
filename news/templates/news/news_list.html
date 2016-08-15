@@ -6,8 +6,9 @@
                 <div class="news">
                     <h1><a href="{% url 'news_detail' pk=news_item.pk %}">{{ news_item.news_title }}</a></h1>
 
-                    <p>{{ news_item.text|linebreaksbr}}</p> <!-- |linebreaksbr converts line breaks into paragraph-->
+                    <p>{{ news_item.text|linebreaksbr|truncatechars:200}}</p> <!-- |linebreaksbr converts line breaks into paragraph-->
                     <p>Published: {{ news_item.published_date }}</p>
+                    <!--<p>Created: {{ news_item.created_date }}</p>-->
                     <a href="{% url 'news.views.news_detail' pk=news_item.pk %}">Comments:{{ news_item.approved_comments.count }}</a>
                 </div>
                 {% endif %}

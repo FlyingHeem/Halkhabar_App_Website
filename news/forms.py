@@ -1,5 +1,5 @@
 from django import forms
-from .models import NewsItem,Comment
+from .models import NewsItem, Comment
 
 
 class NewsForm(forms.ModelForm):
@@ -16,3 +16,7 @@ class CommentForm(forms.ModelForm):
             model = Comment
             fields = ('author', 'text',)
 
+'''
+class ProfileForm(forms.Form):
+name = forms.charFiled(label='Hem Shamra', max_size=100)
+'''
