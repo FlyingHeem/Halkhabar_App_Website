@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
@@ -15,4 +15,10 @@ urlpatterns = [
     url(r'^news/(?P<pk>\d+)/publish/$', views.news_publish, name='news_publish'),
     url(r'^news/(?P<pk>\d+)/remove/$', views.news_remove, name='news_remove'),
 
+]
+
+# Login and logout views for the browsable API
+urlpatterns += [
+    url(r'^api-auth/', include('rest_framework.urls',
+                               namespace='rest_framework')),
 ]
